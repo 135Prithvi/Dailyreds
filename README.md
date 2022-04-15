@@ -1,0 +1,2 @@
+# Dailyreds
+My nextjs blog
