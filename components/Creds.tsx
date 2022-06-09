@@ -1,24 +1,33 @@
+import Avatar from '@mui/material/Avatar'
+import { useSession, signOut, signIn } from 'next-auth/react'
 
-import Avatar from "@mui/material/Avatar"
-import { useSession, signOut, signIn } from "next-auth/react"
-import { useEffect } from "react"
+export default function Creds({}: any) {
+  const { data: session } = useSession()
 
-import Router from 'next/router'
-
-export default function Creds({ }: any) {
-    const { data: session } = useSession()
-    useEffect(() => {
-      Router.push('/posts/blogpost')
-  },[100])
-    if(session) {
-      return <>
-        <Avatar alt="Remy Sharp" src={`${session.user?.image}`}  />
-        <button type="button" className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"onClick={() => signOut()}>Sign out</button>
+  if (session) {
+    return (
+      <>
+        <Avatar alt="..." src={`${session.user?.image}` ||'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3OCSMFIW5fZ3vSN6yGpD-w-6SsL2_ZPA_sw&usqp=CAU'} />
+        <button
+          type="button"
+          className="mr-2 rounded-lg bg-gradient-to-br from-green-400 to-blue-600 px-5 py-2 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800 "
+          onClick={() => signOut()}
+        >
+          Sign out
+        </button>
       </>
-      
-    }
-    return <>
-      Not signed in <br/>
-      <button type="button" className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"onClick={() => signIn()}>Sign in</button>
-    </>
+    )
   }
+  return (
+    <>
+      <Avatar alt="..." src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3OCSMFIW5fZ3vSN6yGpD-w-6SsL2_ZPA_sw&usqp=CAU'} />
+      <button
+        type="button"
+        className="mr-2 mb-2 rounded-lg bg-gradient-to-br from-green-400 to-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800"
+        onClick={() => signIn()}
+      >
+        Sign in
+      </button>
+    </>
+  )
+}

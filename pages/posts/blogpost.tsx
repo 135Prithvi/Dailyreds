@@ -1,3 +1,4 @@
+import { signIn, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { getSortedPostsData } from '../../lib/posts'
 
@@ -11,30 +12,44 @@ export async function getStaticProps() {
 }
 
 export default function blogpost({ _allPostsData }: any) {
-  return (
-    <>
-      <main className="mx-5 mt-6 flex max-w-full flex-wrap items-center justify-around sm:w-full ">
-        <div className="container  flex w-full flex-1 flex-col items-center justify-center px-20 text-center ">
-          <a className=" ">
-            <section className=" ">
-              {_allPostsData.map(({ id, date, title }: any) => (
-                <div key={id}>
-                  <div className="my-8 block max-w-full rounded-lg border-4 border-double border-sky-900 p-2  text-white shadow-md hover:cursor-pointer hover:bg-gray-100 dark:border-gray-700 dark:bg-cyan-500 dark:hover:bg-gray-700">
-                    <Link href={`/posts/${id}`} key={date}>
-                      <h5 className="mb-2 text-2xl  font-bold tracking-tight text-gray-900 hover:text-black dark:text-white">
-                        {title}
-                      </h5>
-                    </Link>
-                    <p className="font-normal text-gray-700 dark:text-black">
+  const { data: session } = useSession()
+  if (session) {
+    return (
+      <>
+        <div className="mx-10 sm:mx-20 ">
+          <div className="my-10 space-y-5 text-center sm:grid sm:grid-cols-2 sm:gap-x-4 sm:gap-y-5 sm:space-y-0">
+            {_allPostsData.map(({ id, date, title }: any) => (
+              <>
+                <Link href={`/posts/${id}`} key={title}>
+                  <a className="text-md mx-2  mb-1 block rounded-lg bg-gradient-to-br from-green-400 to-blue-600 py-4  px-5 pr-4 pl-3 text-center font-medium text-black hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800">
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-100 ">
+                      {title}
+                    </h5>
+                    <p className="font-normal text-gray-700 dark:text-gray-100">
                       {date}
                     </p>
-                  </div>
-                </div>
-              ))}
-            </section>
-          </a>
+                  </a>
+                </Link>
+              </>
+            ))}
+          </div>
         </div>
+      </>
+    )
+  }
+  if (!session) {
+    return (
+      <main className="mx-5 mt-10 items-center    justify-around text-center text-2xl sm:w-full ">
+        <p className="font-sans text-xl font-bold text-black">Not signed in</p>{' '}
+        <br />
+        <button
+          type="button"
+          className="mr-2 mb-2 rounded-lg bg-gradient-to-br from-green-400 to-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800"
+          onClick={() => signIn()}
+        >
+          Sign in
+        </button>
       </main>
-    </>
-  )
+    )
+  }
 }
