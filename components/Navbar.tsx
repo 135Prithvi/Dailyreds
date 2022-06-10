@@ -14,7 +14,7 @@ function Navbar() {
     <div className="sticky top-0  ">
       <nav className=" w-full border-gray-200 bg-white px-2 py-2.5 dark:bg-gray-800">
         <div className="container mx-auto flex flex-wrap items-center justify-between">
-          <div className="flex items-center">
+          <div className="flex items-center mx-2 sm:mx-0">
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
               Dailyreds
             </span>
