@@ -11,10 +11,10 @@ function Navbar() {
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
 
   return (
-    <div className="sticky top-0  ">
+    <div className="relative top-0  ">
       <nav className=" w-full border-gray-200 bg-white px-2 py-2.5 dark:bg-gray-800">
         <div className="container mx-auto flex flex-wrap items-center justify-between">
-          <div className="flex items-center mx-2 sm:mx-0">
+          <div className="flex items-center px-2 ">
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
               Dailyreds
             </span>
@@ -56,7 +56,7 @@ function Navbar() {
             <ul className="mt-4 flex flex-col md:mt-0 md:flex-row md:space-x-2 md:text-sm md:font-medium">
               <Link href="/">
                 <a
-                  className="mx-2 mb-1 block rounded-lg bg-gradient-to-br from-green-400 to-blue-600 px-5 py-2 pr-4 pl-3 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800"
+                  className="mx-2  mb-1 block rounded-lg bg-gradient-to-br from-green-400 to-blue-600  px-5 py-2 pr-4 pl-3 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none  focus:ring-4 focus:ring-green-200 dark:from-green-300 dark:to-blue-500 dark:focus:ring-green-800"
                   aria-current="page"
                 >
                   Home
@@ -64,17 +64,46 @@ function Navbar() {
               </Link>
 
               <Link href="/posts/product">
-                <a className="mx-2 mb-1 block rounded-lg bg-gradient-to-br from-green-400 to-blue-600 px-5 py-2 pr-4 pl-3 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4  focus:ring-green-200 dark:focus:ring-green-800">
+                <a className="mx-2  mb-1 block rounded-lg bg-gradient-to-br from-green-400 to-blue-600 px-5 py-2  pr-4 pl-3 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-green-200 dark:from-green-300  dark:to-blue-500 dark:focus:ring-green-800">
                   Services
                 </a>
               </Link>
               <Link href="/posts/blogpost">
-                <a className="mx-2 mb-1 block rounded-lg bg-gradient-to-br from-green-400 to-blue-600 px-5 py-2 pr-4 pl-3 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800">
+                <a className="mx-2  mb-1 block rounded-lg bg-gradient-to-br from-green-400 to-blue-600 px-5 py-2 pr-4 pl-3 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-green-200 dark:from-green-300 dark:to-blue-500 dark:focus:ring-green-800">
                   Posts
                 </a>
               </Link>
-              <a className="mx-2 mb-1 block rounded-lg bg-gradient-to-br from-green-400 to-blue-600 px-5 py-2 pr-4 pl-3 text-center text-sm font-bold text-black hover:bg-gradient-to-bl focus:outline-none focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800">
-                <button onClick={toggleTheme}>Change Theme</button>
+              <a
+                onClick={toggleTheme}
+                className="mx-2 mb-1 rounded-lg p-2 text-center text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700 sm:mx-0 sm:mb-0 "
+              >
+                <button>
+                  {theme == 'light' ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className=" w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                      />
+                    </svg>
+                  )}
+                </button>
               </a>
             </ul>
           </div>

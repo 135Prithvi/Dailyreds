@@ -8,5 +8,7 @@ module.exports = {
       center: true,
     },
   },
+  darkMode: 'class',
+  presets: [require('./lib/tailwind-preset')],
   plugins: [],
 }

@@ -25,14 +25,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         src="https://unpkg.com/flowbite@latest/dist/flowbite.js"
         strategy="beforeInteractive"
       ></Script>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        value={{
-          light: 'light',
-          dark: darkTheme.className,
-        }}
-      >
+      <ThemeProvider attribute="class" enableSystem={true}>
         <LoadingBar
           color="#f11946"
           progress={progress}
